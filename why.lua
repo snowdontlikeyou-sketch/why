@@ -869,9 +869,9 @@ local function createESP(p)
     hl.OutlineTransparency=0
     hl.DepthMode=Enum.HighlightDepthMode.AlwaysOnTop
     hl.Parent=SG
-    local bb=Instance.new("BillboardGui")
-    bb.Size=UDim2.new(0,200,0,40)
-    bb.StudsOffset=Vector3.new(0,3,0)
+        local bb=Instance.new("BillboardGui")
+    bb.Size=UDim2.new(0,100,0,20) -- Diminuí de 200x40 para 100x20
+    bb.StudsOffset=Vector3.new(0,2.5,0) -- Subi um pouquinho pra ficar mais perto da cabeça
     bb.AlwaysOnTop=true
     bb.Adornee=c:FindFirstChild("Head")
     bb.Parent=SG
@@ -882,7 +882,8 @@ local function createESP(p)
     nl.TextColor3=Color3.fromRGB(255,255,255)
     nl.TextStrokeTransparency=0
     nl.TextStrokeColor3=Color3.fromRGB(0,0,0)
-    nl.TextScaled=true
+    nl.TextScaled=false -- Desliga o escalonamento
+    nl.TextSize=10 -- Define o tamanho fixo da fonte (ajuste como quiser: 8, 10, 12...)
     nl.Font=Enum.Font.GothamBold
     nl.Parent=bb
     ESPObjects[p]={h=hl,b=bb}
