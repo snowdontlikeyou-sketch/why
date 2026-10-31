@@ -710,6 +710,8 @@ local function isValidTarget(p)
     if not c then return false end
     local h=c:FindFirstChildOfClass("Humanoid")
     if not h or h.Health<=0 then return false end
+    local hrp=c:FindFirstChild("HumanoidRootPart")
+    if not hrp then return false end -- Garante que o corpo ainda existe
     local pa=getAimPart(c)
     if not pa then return false end
     return true,pa
@@ -764,6 +766,13 @@ RunService:BindToRenderStep("AimbotLoop",Enum.RenderPriority.Camera.Value+1,func
     if not CONFIG.AimbotEnabled then
         CurrentTarget=nil
         return
+    end
+            -- SOLTA A MIRA SE O ALVO MORRER
+    if CurrentTarget then
+        local ok = isValidTarget(CurrentTarget)
+        if not ok then
+            CurrentTarget = nil
+        end
     end
     local tgt,pa=getClosestTarget()
     CurrentTarget=tgt
